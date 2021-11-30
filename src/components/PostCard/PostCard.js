@@ -10,7 +10,7 @@ import React from 'react'
                 <div className="card-top">
                 <h3>{data.title} </h3>
                 <p>By {data.author}</p>
-                <img src = {data.url}/>
+                <img src = {data.url} alt={data.title}/>
                 </div>
             </div>
         </div>
