@@ -1,13 +1,16 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 import redditApi from '../../common/api/redditApi';
 
-export const fetchAsyncPosts = createAsyncThunk('posts/fetchAsyncPosts', async () => {
-    const response = await redditApi.get('recipes.json')
+
+export const fetchAsyncPosts = createAsyncThunk('posts/fetchAsyncPosts', async (subreddit) => {
+    const response = await redditApi.get(subreddit)
     return response.data.data.children;
 });
 
+
 const initialState = {
-    posts: []
+    posts: [],
+    selectedSubreddit: 'recipes.json'
 }
 
 const postSlice = createSlice({
@@ -17,6 +20,9 @@ const postSlice = createSlice({
     addPosts: (state, { payload }) => {
         state.posts = payload;
     },
+    setSelectedSubreddit(state, action) {
+        state.selectedSubreddit = action.payload;
+    }
   },
   extraReducers: {
       [fetchAsyncPosts.pending] : () => {
@@ -32,6 +38,11 @@ const postSlice = createSlice({
     },
 });
 
-export const {addPosts} = postSlice.actions;
+export const {addPosts, setSelectedSubreddit} = postSlice.actions;
+
+export const selectSelectedSubreddit = (state) => state.selectedSubreddit;
+
+
 export default postSlice.reducer;
+
 export const getAllPosts = (state) => state.posts.posts;
