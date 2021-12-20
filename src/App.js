@@ -5,7 +5,7 @@ import Header from "./components/Header/Header";
 import Home from "./components/Home/Home";
 import PostDetails from "./components/PostDetails/PostDetails";
 import Footer from "./components/Footer/Footer";
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
   return (
     <div className="App">
