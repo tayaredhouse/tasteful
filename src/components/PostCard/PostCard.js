@@ -21,7 +21,7 @@ import parse from 'html-react-parser';
   
     const mediaRender = () => {
         if (data.thumbnail !== 'self' && data.thumbnail !== 'default' && data.is_self !== true && data.is_gallery !== true && data.domain !== 'youtu.be' && data.domain !== 'v.redd.it') {
-        return <img src = {data.url} alt={data.title} class="card-img-top"/>;   
+        return <img src = {data.url} alt={data.title} className="card-img-top"/>;   
         } if ( data.is_video == true) {
             return (
             <div>
@@ -48,7 +48,7 @@ import parse from 'html-react-parser';
         if(data.is_self == true) {
             return (<p>{data.selftext}</p>)
         } else {
-            return <div></div>
+            return <p></p>
         }
     }
 
@@ -61,8 +61,8 @@ import parse from 'html-react-parser';
                 <div className="col-md-7">
                 <div className="card-body">
                     <h5 className="card-title">{parse(data.title)}</h5>
-                    <p className="card-text">{renderSelf()}</p>
-                    <p className="card-text"><small className="text-muted">By {data.author}</small></p>
+                    <div className="card-text">{renderSelf()}</div>
+                    <div className="card-text"><small className="text-muted">By {data.author}</small></div>
                     <a href="#" className="btn btn-primary">Go to post</a>
                 </div>
                 </div>

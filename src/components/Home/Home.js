@@ -16,10 +16,10 @@ function Home() {
  
     return (
         <div>
-            <div class="jumbotron jumbotron-fluid">
-                <div class="container text-center">
-                     <h1 class="display-4">Welcome to Tasteful Reddit</h1>
-                    <p class="lead">Toggle between subreddits above to view their recipes.</p>
+            <div className="jumbotron jumbotron-fluid">
+                <div className="container text-center">
+                     <h1 className="display-4">Welcome to Tasteful Reddit</h1>
+                    <p className="lead">Toggle between subreddits above to view their recipes.</p>
                  </div>
         </div>
             <PostListing />
