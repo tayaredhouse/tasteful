@@ -15,7 +15,6 @@ function PostListing() {
 
     return (
         <div className="post-wrapper">
-            <h2></h2>
             <div className="post-container">
              {rendering()}
             </div>
