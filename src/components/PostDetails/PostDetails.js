@@ -6,6 +6,8 @@ import {useLocation} from 'react-router-dom';
 import { getSelectedPost } from '../../features-redux/posts/postSlice';
 import Comments from '../../Comments/Comments';
 
+import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
+
 function PostDetails() {
     const location = useLocation();
     const {from} = location.state;
@@ -68,6 +70,7 @@ function PostDetails() {
             {mediaRender()}
             <div class="card-body">
                 <h5 class="card-title">{from.title}</h5>
+                <p>By {from.author}</p>
                 <p class="card-text">{renderSelf()}</p>
             </div>
             <div class="accordion" id="accordionExample">

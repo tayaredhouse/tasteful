@@ -1,6 +1,6 @@
 import React from 'react'
 import Replies from './Replies';
-
+import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 function Comments(props) {
     const {comment} = props;
 
@@ -20,10 +20,9 @@ function Comments(props) {
         }
     }
 
-    console.log(renderReplies())
     return (
         <div>
-        <li class="list-group-item"><strong>{comment.author}</strong> {comment.body}</li>
+        <li class="list-group-item"><strong>{comment.author}</strong> <ReactMarkdown>{comment.body}</ReactMarkdown></li>
                 {renderReplies()}
             
         

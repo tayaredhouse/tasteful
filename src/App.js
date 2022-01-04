@@ -6,11 +6,14 @@ import Home from "./components/Home/Home";
 import PostDetails from "./components/PostDetails/PostDetails";
 import Footer from "./components/Footer/Footer";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import ScrollToTop from "./components/ScrollToTop";
+
 function App() {
   return (
     <div className="App">
       
       <Router>
+        <ScrollToTop />
         <Header/>
          <Routes>
           <Route path="/" element={<Home />} />

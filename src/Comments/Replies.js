@@ -2,7 +2,7 @@ import React from 'react'
 
 function Replies(props) {
     const {reply} = props;
-    console.log(reply);
+
 
     return (
     <div>

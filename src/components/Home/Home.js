@@ -19,7 +19,9 @@ function Home() {
             <div className="jumbotron jumbotron-fluid">
                 <div className="container text-center">
                      <h1 className="display-4">Welcome to Tasteful Reddit</h1>
-                    <p className="lead">Toggle between subreddits above to view their recipes.</p>
+                    <p className="lead"><strong>A place to find the tastiest Reddit posts!</strong> Toggle between subreddits above to view their posts and recipes.
+                    Most of these subreddit recipes are found in the post's comments, please go to each
+                    individual post to see them.</p>
                  </div>
         </div>
             <PostListing />
