@@ -2,13 +2,14 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { getAllPosts } from '../../features-redux/posts/postSlice'
 import PostCard from '../PostCard/PostCard';
+import {Link} from 'react-router-dom';
 
 function PostListing() {
     const posts = useSelector(getAllPosts);
     
 
     const rendering = () => posts.map((post, key) => {
-        return <PostCard key={key} data={post.data} />;
+        return <PostCard key={key} data={post.data} />
     });
 
     console.log(posts);

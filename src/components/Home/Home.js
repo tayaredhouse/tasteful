@@ -2,7 +2,7 @@ import React, {useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import PostListing from '../PostListing/PostListing'
 import { fetchAsyncPosts } from '../../features-redux/posts/postSlice';
-
+import { getPostComments } from '../../features-redux/posts/postSlice';
 function Home() {
  
     const dispatch = useDispatch();
@@ -11,7 +11,7 @@ function Home() {
   
     useEffect(() => {
         dispatch(fetchAsyncPosts(subreddit));
-    }, [subreddit]);
+    }, [dispatch, subreddit]);
 
  
     return (

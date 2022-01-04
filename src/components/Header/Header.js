@@ -36,7 +36,7 @@ function Header() {
     return (
         <nav className="navbar navbar-expand-lg navbar-light">
         <div className="container-fluid">
-            <div className="navbar-brand" href="#">
+            <div className="navbar-brand">
                 <Link to="/">
                     <img src={logo} alt="Tasteful Reddit logo" height="100" className="d-inline-block align-text-top"/>
                 </Link>
@@ -48,13 +48,13 @@ function Header() {
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item dropdown">
-                <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <a className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Choose Subreddit
                 </a>
                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a className="dropdown-item" href="#" onClick= {onRecipesClick}>Recipes</a></li>
-                    <li><a className="dropdown-item" href="#" onClick={onBakingClick}>Baking Recipes</a></li>
-                    <li><a className="dropdown-item" href="#" onClick={onDeliciousClick}>All Delicious Recipes</a></li>
+                    <li><a className="dropdown-item" onClick= {onRecipesClick}>Recipes</a></li>
+                    <li><a className="dropdown-item" onClick={onBakingClick}>Baking Recipes</a></li>
+                    <li><a className="dropdown-item" onClick={onDeliciousClick}>All Delicious Recipes</a></li>
                 </ul>
                 </li>
             </ul>

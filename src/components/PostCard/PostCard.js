@@ -1,8 +1,11 @@
 import React from 'react'
 import parse from 'html-react-parser';
-
+import {Link} from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { addSelectedPost } from '../../features-redux/posts/postSlice';
  function PostCard(props) {
     const {data} = props;
+    const dispatch = useDispatch();
 
    /* Function to change escaped HTML to string */
     const htmlDecode = (input) => {
@@ -19,7 +22,7 @@ import parse from 'html-react-parser';
     and if its a reddit hosted video or youtube video it will render the video. 
     Gallery-style posts & all else shows empty div*/
   
-    const mediaRender = () => {
+     const mediaRender = () => {
         if (data.thumbnail !== 'self' && data.thumbnail !== 'default' && data.is_self !== true && data.is_gallery !== true && data.domain !== 'youtu.be' && data.domain !== 'v.redd.it') {
         return <img src = {data.url} alt={data.title} className="card-img-top"/>;   
         } if ( data.is_video == true) {
@@ -52,21 +55,25 @@ import parse from 'html-react-parser';
         }
     }
 
+
     return (
-             <div className="card mb-3 mx-auto text-center" style={{width: "70%"}}>
-            <div className="row g-0">
-                <div className="col-md-5">
-                {mediaRender()}
-                </div>
+            <div className="card mb-3 mx-auto text-center" style={{width: "70%"}}>
+               <div className="row g-0">
+                 <div className="col-md-5">
+                    {mediaRender()}
+                 </div>
                 <div className="col-md-7">
-                <div className="card-body">
+                  <div className="card-body">
                     <h5 className="card-title">{parse(data.title)}</h5>
                     <div className="card-text">{renderSelf()}</div>
                     <div className="card-text"><small className="text-muted">By {data.author}</small></div>
-                    <a href="#" className="btn btn-primary">Go to post</a>
+                        <Link to={`/post/${data.id}`}
+                         state={{ from: data}}>
+                            <button className="btn btn-primary">Go to post</button>
+                        </Link>
+                    </div>
+                   </div>
                 </div>
-                </div>
-            </div>
             </div> 
 
 
