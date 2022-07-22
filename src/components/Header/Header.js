@@ -3,18 +3,36 @@ import logo from "../Header/logo.png";
 import { Link } from 'react-router-dom';
 import './Header.scss';
 import { setSelectedSubreddit } from '../../features-redux/posts/postSlice';
-import { useDispatch } from 'react-redux';
-import { useState } from 'react';
-
+import { useDispatch} from 'react-redux';
+import { useState, useEffect } from 'react';
+import { getAllPosts } from '../../features-redux/posts/postSlice';
+import { useSelector } from 'react-redux';
+import { setSearchTerm } from '../../features-redux/posts/postSlice';
 function Header() {
-    
+    const posts = useSelector(getAllPosts);
     const dispatch = useDispatch();
     const recipes = 'recipes.json';
     const baking = 'baking.json';
     const deliciousRecipes = 'AllDeliciousRecipes.json';
 
     const [title, setTitle] = useState("Recipes");
-
+    const [searchTermLocal, setSearchTermLocal] = useState('');
+    const searchTerm = useSelector((state) => state.posts.searchTerm);
+  
+  
+    const onSearchTermChange = (e) => {
+      setSearchTermLocal(e.target.value);
+    };
+  
+    useEffect(() => {
+      setSearchTermLocal(searchTerm);
+    }, [searchTerm]);
+  
+    const onSearchTermSubmit = (e) => {
+      e.preventDefault();
+      dispatch(setSearchTerm(searchTermLocal));
+    };
+  
 
     const onRecipesClick = (e) => {
         e.preventDefault();
@@ -57,6 +75,12 @@ function Header() {
                     <li><a className="dropdown-item" onClick={onDeliciousClick}>All Delicious Recipes</a></li>
                 </ul>
                 </li>
+                <form className="form-inline my-2 my-lg-0" onSubmit={onSearchTermSubmit}>
+                    <input className="form-control mr-sm-2" type="search" 
+                    placeholder="Search..." aria-label="Search"
+                     onChange={onSearchTermChange} />
+                    <button type="submit" onClick={onSearchTermSubmit}></button>
+                </form>
             </ul>
             </div>
         </div>
@@ -66,3 +90,4 @@ function Header() {
 }
 
 export default Header
+

@@ -12,7 +12,7 @@ function Comments(props) {
         } else if (comment.replies !== "") {
             return comment.replies.data.children.map((reply, key) => {
                 return (
-               <ul class="list-group-flush">
+               <ul className="list-group-flush">
                 <Replies key={key} reply={reply} />
                 </ul>
                 )
@@ -22,7 +22,7 @@ function Comments(props) {
 
     return (
         <div>
-        <li class="list-group-item"><strong>{comment.author}</strong> <ReactMarkdown>{comment.body}</ReactMarkdown></li>
+        <li className="list-group-item"><strong>{comment.author}</strong> <ReactMarkdown>{comment.body}</ReactMarkdown></li>
                 {renderReplies()}
             
         

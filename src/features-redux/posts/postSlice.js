@@ -1,6 +1,6 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 import redditApi from '../../common/api/redditApi';
-import postCommentApi from '../../common/api/postCommentApi';
+import { createSelector } from '@reduxjs/toolkit';
 
 export const fetchAsyncPosts = createAsyncThunk('posts/fetchAsyncPosts', async (subreddit) => {
     const response = await redditApi.get(subreddit)
@@ -18,7 +18,8 @@ export const getPostComments = createAsyncThunk('posts/getPostComments', async (
 const initialState = {
     posts: [],
     selectedSubreddit: 'recipes.json',
-    selectedPost: []
+    selectedPost: [],
+    search: ''
 }
 
 const postSlice = createSlice({
@@ -33,7 +34,11 @@ const postSlice = createSlice({
     },
     setSelectedSubreddit(state, action) {
         state.selectedSubreddit = action.payload;
-    }
+        state.search = '';
+    },
+    setSearchTerm(state, action) {
+        state.search = action.payload;
+      }
   },
   extraReducers: {
       [fetchAsyncPosts.pending] : () => {
@@ -53,8 +58,23 @@ const postSlice = createSlice({
     },
 });
 
-export const {addPosts, setSelectedSubreddit, addSelectedPost} = postSlice.actions;
+export const {addPosts, setSelectedSubreddit, addSelectedPost, setSearchTerm} = postSlice.actions;
 export const selectSelectedSubreddit = (state) => state.selectedSubreddit;
 export const getAllPosts = (state) => state.posts.posts;
 export const getSelectedPost = (state) => state.posts.selectedPost;
 export default postSlice.reducer;
+
+export const selectSearchTerm = (state) => state.posts.searchTerm;
+
+export const selectFilteredPosts = createSelector(
+  [getAllPosts, selectSearchTerm],
+  (posts, search) => {
+    if (search !== '') {
+      return posts.filter((post) =>
+        post.title.toLowerCase().includes(search.toLowerCase())
+      );
+    }
+
+    return posts;
+  }
+);

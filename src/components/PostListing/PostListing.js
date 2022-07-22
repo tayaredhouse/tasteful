@@ -2,7 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { getAllPosts } from '../../features-redux/posts/postSlice'
 import PostCard from '../PostCard/PostCard';
-import {Link} from 'react-router-dom';
+import { selectFilteredPosts } from '../../features-redux/posts/postSlice';
 
 function PostListing() {
     const posts = useSelector(getAllPosts);
